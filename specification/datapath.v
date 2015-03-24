@@ -4,8 +4,8 @@
 // This is the stub for the datapath block.  Please start with this
 // template when writing your Verilog code.
 //
-// Names:  <insert your names here>
-// Number:  <insert your student numbers here>
+// Names:  Derrick Wilson
+// Number:  76674068
 //
 
 module datapath(remainder, 
