@@ -50,14 +50,15 @@ reg valid;
 // Behavioural Description
 
 // State Register
-always @(posedge clk or posedge reset) begin
-	if (reset) begin
+always @(posedge clk or posedge reset) 
+begin
+	if (reset == 1'b1) begin
 		// async reset, current state is 0
-		curr_state <= 2'b00;
+		curr_state = 2'b00;
 	end
-	else
+	else begin
 		// go to next state
-		curr_state <= next_state;
+		curr_state = next_state;
 	end
 end
 
@@ -151,7 +152,7 @@ always @(curr_state) begin
 				valid <= 1'b0;	// result is not valid
 			end
 		end	
-	endmodule
+	endcase
 end
 
 endmodule

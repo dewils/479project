@@ -108,7 +108,7 @@ always @(shift) begin
 		shift_value[15:1] <= mux_value[14:0];	// shift remainder register input left 1 bit
 		shift_value[0] <= inbit;	// remainder register input is value of inbit input from controller
 	end
-	else
+	else begin
 		// shift not selected
 		shift_value[15:0] <= mux_value[15:0];	// do not shift remainder register input
 	end
@@ -120,15 +120,15 @@ always @(posedge clk) begin
 		// sync reset
 		remainder_reg = 16'b0000000000000000;	// reset remainder value
 	end
-	else
+	else begin
 		// rising edge of clock
 		remainder_reg = shift_value;	// Remainder Register stores output of shifter for 1 clock cycle
 	end
 end
 
 // DataPath Outputs
-remainder <= remainder_reg[15:9];
-quotient <= remainder_reg[7:0];
-sign <= adder_result[7];
+assign remainder = remainder_reg[15:9];	// remainder is Remainder[15:9]
+assign quotient = remainder_reg[7:0];		// quotient is Remainder[7:0]
+assign sign = adder_result[7];			// sign is the 7th bit of the adder
 
 endmodule
