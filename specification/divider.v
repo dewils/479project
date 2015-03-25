@@ -38,11 +38,12 @@ input reset;
 // wire shift_w;
 // wire inbit_w:
 
+// Structural Description
 controller controller(	load,		// output
 						add,		// output
 						shift,		// output
 						inbit,		// output
-						sel,		// output (2 buts)
+						sel,		// output (2 bits)
 						valid,		// output
 						start,		// input
 						sign, 		// input

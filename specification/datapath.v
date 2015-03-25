@@ -8,18 +8,18 @@
 // Number:  76674068
 //
 
-module datapath(remainder, 
-                quotient, 
-                sign,
-                divisorin,
-                dividendin,
-                load,
-                add,
-                shift,
-                inbit,
-                sel,
-                clk,
-                reset);
+module datapath(        remainder,              // output (7 bits)
+                        quotient,               // output (8 bits)
+                        sign,                   // output 
+                        divisorin,              // input (7 bits)
+                        dividendin,             // input (8 bits)
+                        load,                   // input
+                        add,                    // input
+                        shift,                  // input
+                        inbit,                  // input
+                        sel,                    // input (2 bits)
+                        clk,                    // clock input
+                        reset);                 // async reset 
 
 output [6:0] remainder;
 output [7:0] quotient;
@@ -35,6 +35,12 @@ input clk;
 input reset;
 
 
--- Insert your code here
+// Regs
+
+
+// Wires
+
+
+// Behavioural Description
 
 endmodule
