@@ -126,4 +126,9 @@ always @(posedge clk) begin
 	end
 end
 
+// DataPath Outputs
+remainder <= remainder_reg[15:9];
+quotient <= remainder_reg[7:0];
+sign <= adder_result[7];
+
 endmodule
