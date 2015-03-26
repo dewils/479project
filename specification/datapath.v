@@ -40,13 +40,12 @@ input reset;
 
 // Regs
 reg [7:0] divisor_reg;
-reg [7:0] adder_result;
 reg [15:0] mux_value;
 reg [15:0] shift_value;
 reg [15:0] remainder_reg;
 
 // Wires
-
+wire [7:0] adder_result;
 
 // Behavioural Description
 
@@ -63,17 +62,8 @@ always @(posedge clk or posedge reset) begin
 	end
 end
 
-// // 8-Bit Add/Subtract Module
-// always @(add) begin
-// 	if (add) begin
-// 		// add selected
-// 		adder_result <= remainder_reg[15:8] + divisor_reg;	// add Divisor Register to Remainder[15:8]
-// 	end
-// 	else begin
-// 		// subtract selected
-// 		adder_result <= remainder_reg[15:8] - divisor_reg;	// subtract Divisor Register from Remainder[15:8]
-// 	end
-// end
+assign adder_result = (add) ? 8'b00000000 + divisor_reg : 8'b00000000 - divisor_reg;
+
 
 // // 16-bit 3-to-1 Mux Module
 // always @(sel) begin
@@ -131,6 +121,6 @@ end
 // assign quotient = remainder_reg[7:0];		// quotient is Remainder[7:0]
 // assign sign = adder_result[7];			// sign is the 7th bit of the adder
 
-assign quotient = divisor_reg;
+assign quotient = adder_result;
 
 endmodule

@@ -3,8 +3,8 @@ Command arguments:
     datapath.v
     test_datapath.v
 
-Tool:	VERILOG-XL	08.20.001-p log file created Mar 25, 2015  23:40:44
-Tool:	VERILOG-XL	08.20.001-p   Mar 25, 2015  23:40:44
+Tool:	VERILOG-XL	08.20.001-p log file created Mar 26, 2015  00:26:41
+Tool:	VERILOG-XL	08.20.001-p   Mar 26, 2015  00:26:41
 
 Copyright (c) 1995-2004 Cadence Design Systems, Inc.  All Rights Reserved.
 Unpublished -- rights reserved under the copyright laws of the United States.
@@ -38,23 +38,21 @@ Compiling source file "test_datapath.v"
 Highest level modules:
 test_datapath
 
-Number of test vectors:           5
+Number of test vectors:           4
 
 **** Clock Cycle:           0 ****
-Pass: Register value is Correct is correct:  Register=zzzzzzzz
+Pass: Register value is Correct is correct:  Register=xxxxxxxx
 **** Clock Cycle:           1 ****
-Pass: Register value is Correct is correct:  Register=00100000
+Pass: Register value is Correct is correct:  Register=00000010
 **** Clock Cycle:           2 ****
-Pass: Register value is Correct is correct:  Register=00100000
+Pass: Register value is Correct is correct:  Register=00000010
 **** Clock Cycle:           3 ****
-Pass: Register value is Correct is correct:  Register=00100000
-**** Clock Cycle:           4 ****
-Pass: Register value is Correct is correct:  Register=01111111
+Pass: Register value is Correct is correct:  Register=11111110
 Number test cases that fail:           0
 Good work!
 
  
-L54 "test_datapath.v": $finish at simulation time 55010
+L54 "test_datapath.v": $finish at simulation time 45010
 0 simulation events (use +profile or +listcounts option to count)
 CPU time: 0.0 secs to compile + 0.0 secs to link + 0.0 secs in simulation
-End of Tool:	VERILOG-XL	08.20.001-p   Mar 25, 2015  23:40:45
+End of Tool:	VERILOG-XL	08.20.001-p   Mar 26, 2015  00:26:42

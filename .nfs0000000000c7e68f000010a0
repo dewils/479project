@@ -64,8 +64,8 @@ task test_datapath;
 
  
   input [255:0] file;
-  reg[1:18] test_vector_input[5999:0];  // we can have up to 6000 test vectors
-  reg[1:17] line;
+  reg[1:19] test_vector_input[5999:0];  // we can have up to 6000 test vectors
+  reg[1:18] line;
 
   reg [6:0] expected_remainder;
   reg [7:0] expected_quotient;
@@ -105,13 +105,13 @@ task test_datapath;
        reset = line[1];
        load = line[2];
        divisorin = line[3:9];
+       add = line[10];
        // dividendin = line[9:16];
-       // add = line[18];
        // shift = line[19];
        // inbit = line[20];
        // sel = line[30:31];
        // expected_remainder = line[32:38];
-       expected_quotient = line[10:17];
+       expected_quotient = line[11:18];
        // expected_sign = line[47];
 
      @(posedge clk)
