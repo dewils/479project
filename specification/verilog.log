@@ -1,10 +1,10 @@
 Host command: /CMC/tools/cadence/IUS08.20.024_lnx86/tools/verilog/bin/verilog.exe
 Command arguments:
-    controller.v
-    test_controller.v
+    datapath.v
+    test_datapath.v
 
-Tool:	VERILOG-XL	08.20.001-p log file created Mar 25, 2015  21:51:04
-Tool:	VERILOG-XL	08.20.001-p   Mar 25, 2015  21:51:04
+Tool:	VERILOG-XL	08.20.001-p log file created Mar 25, 2015  23:40:44
+Tool:	VERILOG-XL	08.20.001-p   Mar 25, 2015  23:40:44
 
 Copyright (c) 1995-2004 Cadence Design Systems, Inc.  All Rights Reserved.
 Unpublished -- rights reserved under the copyright laws of the United States.
@@ -33,87 +33,28 @@ For technical assistance please contact the Cadence Response Center at
 For more information on Cadence's Verilog-XL product line send email to
 talkv@cadence.com
 
-Compiling source file "controller.v"
-Compiling source file "test_controller.v"
+Compiling source file "datapath.v"
+Compiling source file "test_datapath.v"
 Highest level modules:
-test_controller
+test_datapath
 
-Number of test vectors:          23
+Number of test vectors:           5
 
 **** Clock Cycle:           0 ****
-Pass: state is correct:  state=3
-Pass: valid is correct:  valid=0
+Pass: Register value is Correct is correct:  Register=zzzzzzzz
 **** Clock Cycle:           1 ****
-Pass: state is correct:  state=0
-Pass: valid is correct:  valid=0
+Pass: Register value is Correct is correct:  Register=00100000
 **** Clock Cycle:           2 ****
-Pass: state is correct:  state=1
-Pass: valid is correct:  valid=0
+Pass: Register value is Correct is correct:  Register=00100000
 **** Clock Cycle:           3 ****
-Pass: state is correct:  state=3
-Pass: valid is correct:  valid=0
+Pass: Register value is Correct is correct:  Register=00100000
 **** Clock Cycle:           4 ****
-Pass: state is correct:  state=1
-Pass: valid is correct:  valid=0
-**** Clock Cycle:           5 ****
-Pass: state is correct:  state=2
-Pass: valid is correct:  valid=0
-**** Clock Cycle:           6 ****
-Pass: state is correct:  state=0
-Pass: valid is correct:  valid=0
-**** Clock Cycle:           7 ****
-Pass: state is correct:  state=1
-Pass: valid is correct:  valid=0
-**** Clock Cycle:           8 ****
-Pass: state is correct:  state=3
-Pass: valid is correct:  valid=0
-**** Clock Cycle:           9 ****
-Pass: state is correct:  state=1
-Pass: valid is correct:  valid=0
-**** Clock Cycle:          10 ****
-Pass: state is correct:  state=3
-Pass: valid is correct:  valid=0
-**** Clock Cycle:          11 ****
-Pass: state is correct:  state=1
-Pass: valid is correct:  valid=0
-**** Clock Cycle:          12 ****
-Pass: state is correct:  state=3
-Pass: valid is correct:  valid=0
-**** Clock Cycle:          13 ****
-Pass: state is correct:  state=1
-Pass: valid is correct:  valid=0
-**** Clock Cycle:          14 ****
-Pass: state is correct:  state=3
-Pass: valid is correct:  valid=0
-**** Clock Cycle:          15 ****
-Pass: state is correct:  state=1
-Pass: valid is correct:  valid=0
-**** Clock Cycle:          16 ****
-Pass: state is correct:  state=3
-Pass: valid is correct:  valid=0
-**** Clock Cycle:          17 ****
-Pass: state is correct:  state=1
-Pass: valid is correct:  valid=0
-**** Clock Cycle:          18 ****
-Pass: state is correct:  state=3
-Pass: valid is correct:  valid=0
-**** Clock Cycle:          19 ****
-Pass: state is correct:  state=1
-Pass: valid is correct:  valid=0
-**** Clock Cycle:          20 ****
-Pass: state is correct:  state=3
-Pass: valid is correct:  valid=0
-**** Clock Cycle:          21 ****
-Pass: state is correct:  state=1
-Pass: valid is correct:  valid=0
-**** Clock Cycle:          22 ****
-Pass: state is correct:  state=3
-Pass: valid is correct:  valid=1
+Pass: Register value is Correct is correct:  Register=01111111
 Number test cases that fail:           0
 Good work!
 
  
-L50 "test_controller.v": $finish at simulation time 235010
+L54 "test_datapath.v": $finish at simulation time 55010
 0 simulation events (use +profile or +listcounts option to count)
 CPU time: 0.0 secs to compile + 0.0 secs to link + 0.0 secs in simulation
-End of Tool:	VERILOG-XL	08.20.001-p   Mar 25, 2015  21:51:04
+End of Tool:	VERILOG-XL	08.20.001-p   Mar 25, 2015  23:40:45

@@ -97,7 +97,7 @@ task test_controller;
     reset = 1'b1;
 
     // pull out of reset   
-    #10 reset = 1'b0;
+    #10 reset = 0'b0;
 
     // Step through each test vector 
 

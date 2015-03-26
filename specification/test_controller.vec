@@ -1,4 +1,4 @@
-10111
+101001
 10011	// expect state 3
 00000	// expect state 0
 00001	// expect state 1
@@ -22,3 +22,22 @@
 00011	// expect state 3	--Rep 7
 00001	// expect state 1
 00111	// expect state 3	--Rep 8
+10001	// expect state 1
+00000	// expect state 0
+00001	// expect state 1	
+00011	// expect state 3	--Rep 1
+01001	// expect state 1	
+00010	// expect state 2	--Rep 2
+00001	// expect state 1	
+00011	// expect state 3	--Rep 3
+00001	// expect state 1	
+00011	// expect state 3	--Rep 4
+01001	// expect state 1	
+00010	// expect state 2	--Rep 5
+00001	// expect state 1	
+00011	// expect state 3	--Rep 6
+01001	// expect state 1	
+00010	// expect state 2	--Rep 7
+01001	// expect state 1	
+00110	// expect state 2	--Rep 8
+
