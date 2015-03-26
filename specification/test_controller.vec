@@ -1,23 +1,24 @@
-10110
-1011010z000	// xpect state 0
-000010z0001	// expect state 1
-0001111z011	// expect state 3	--Rep 1
-010010z0001	// expect state 1
-00001101010	// expect state 2	--Rep 2
-1011010z000	// expect state 0
-000010z0001	// expect state 1
-0001111z011	// expect state 3	--Rep 1
-000010z0001	// expect state 1
-0001111z011	// expect state 3	--Rep 2
-000010z0001	// expect state 1
-0001111z011	// expect state 3	--Rep 3
-000010z0001	// expect state 1
-0001111z011	// expect state 3	--Rep 4
-000010z0001	// expect state 1
-0001111z011	// expect state 3	--Rep 5
-000010z0001	// expect state 1
-0001111z011	// expect state 3	--Rep 6
-000010z0001	// expect state 1
-0001111z011	// expect state 3	--Rep 7
-000010z0001	// expect state 1
-0001111z111	// expect state 3	--Rep 8
+10111
+10011	// expect state 3
+00000	// expect state 0
+00001	// expect state 1
+00011	// expect state 3	--Rep 1
+01001	// expect state 1
+10010	// expect state 2	--Rep 2
+00000	// expect state 0
+00001	// expect state 1
+00011	// expect state 3	--Rep 1
+00001	// expect state 1
+00011	// expect state 3	--Rep 2
+00001	// expect state 1
+00011	// expect state 3	--Rep 3
+00001	// expect state 1
+00011	// expect state 3	--Rep 4
+00001	// expect state 1
+00011	// expect state 3	--Rep 5
+00001	// expect state 1
+00011	// expect state 3	--Rep 6
+00001	// expect state 1
+00011	// expect state 3	--Rep 7
+00001	// expect state 1
+00111	// expect state 3	--Rep 8

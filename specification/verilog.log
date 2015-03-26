@@ -3,8 +3,8 @@ Command arguments:
     controller.v
     test_controller.v
 
-Tool:	VERILOG-XL	08.20.001-p log file created Mar 25, 2015  18:30:36
-Tool:	VERILOG-XL	08.20.001-p   Mar 25, 2015  18:30:36
+Tool:	VERILOG-XL	08.20.001-p log file created Mar 25, 2015  21:51:04
+Tool:	VERILOG-XL	08.20.001-p   Mar 25, 2015  21:51:04
 
 Copyright (c) 1995-2004 Cadence Design Systems, Inc.  All Rights Reserved.
 Unpublished -- rights reserved under the copyright laws of the United States.
@@ -38,79 +38,82 @@ Compiling source file "test_controller.v"
 Highest level modules:
 test_controller
 
-Number of test vectors:          22
+Number of test vectors:          23
 
 **** Clock Cycle:           0 ****
-Pass: state is correct:  state=0
+Pass: state is correct:  state=3
 Pass: valid is correct:  valid=0
 **** Clock Cycle:           1 ****
-Pass: state is correct:  state=1
-Pass: valid is correct:  valid=0
-**** Clock Cycle:           2 ****
-Pass: state is correct:  state=3
-Pass: valid is correct:  valid=0
-**** Clock Cycle:           3 ****
-Pass: state is correct:  state=1
-Pass: valid is correct:  valid=0
-**** Clock Cycle:           4 ****
-Pass: state is correct:  state=2
-Pass: valid is correct:  valid=0
-**** Clock Cycle:           5 ****
 Pass: state is correct:  state=0
 Pass: valid is correct:  valid=0
-**** Clock Cycle:           6 ****
+**** Clock Cycle:           2 ****
 Pass: state is correct:  state=1
+Pass: valid is correct:  valid=0
+**** Clock Cycle:           3 ****
+Pass: state is correct:  state=3
+Pass: valid is correct:  valid=0
+**** Clock Cycle:           4 ****
+Pass: state is correct:  state=1
+Pass: valid is correct:  valid=0
+**** Clock Cycle:           5 ****
+Pass: state is correct:  state=2
+Pass: valid is correct:  valid=0
+**** Clock Cycle:           6 ****
+Pass: state is correct:  state=0
 Pass: valid is correct:  valid=0
 **** Clock Cycle:           7 ****
-Pass: state is correct:  state=3
+Pass: state is correct:  state=1
 Pass: valid is correct:  valid=0
 **** Clock Cycle:           8 ****
-Pass: state is correct:  state=1
+Pass: state is correct:  state=3
 Pass: valid is correct:  valid=0
 **** Clock Cycle:           9 ****
-Pass: state is correct:  state=3
+Pass: state is correct:  state=1
 Pass: valid is correct:  valid=0
 **** Clock Cycle:          10 ****
-Pass: state is correct:  state=1
+Pass: state is correct:  state=3
 Pass: valid is correct:  valid=0
 **** Clock Cycle:          11 ****
-Pass: state is correct:  state=3
+Pass: state is correct:  state=1
 Pass: valid is correct:  valid=0
 **** Clock Cycle:          12 ****
-Pass: state is correct:  state=1
+Pass: state is correct:  state=3
 Pass: valid is correct:  valid=0
 **** Clock Cycle:          13 ****
-Pass: state is correct:  state=3
+Pass: state is correct:  state=1
 Pass: valid is correct:  valid=0
 **** Clock Cycle:          14 ****
-Pass: state is correct:  state=1
+Pass: state is correct:  state=3
 Pass: valid is correct:  valid=0
 **** Clock Cycle:          15 ****
-Pass: state is correct:  state=3
+Pass: state is correct:  state=1
 Pass: valid is correct:  valid=0
 **** Clock Cycle:          16 ****
-Pass: state is correct:  state=1
+Pass: state is correct:  state=3
 Pass: valid is correct:  valid=0
 **** Clock Cycle:          17 ****
-Pass: state is correct:  state=3
+Pass: state is correct:  state=1
 Pass: valid is correct:  valid=0
 **** Clock Cycle:          18 ****
-Pass: state is correct:  state=1
-Pass: valid is correct:  valid=0
-**** Clock Cycle:          19 ****
 Pass: state is correct:  state=3
 Pass: valid is correct:  valid=0
-**** Clock Cycle:          20 ****
+**** Clock Cycle:          19 ****
 Pass: state is correct:  state=1
 Pass: valid is correct:  valid=0
+**** Clock Cycle:          20 ****
+Pass: state is correct:  state=3
+Pass: valid is correct:  valid=0
 **** Clock Cycle:          21 ****
+Pass: state is correct:  state=1
+Pass: valid is correct:  valid=0
+**** Clock Cycle:          22 ****
 Pass: state is correct:  state=3
 Pass: valid is correct:  valid=1
 Number test cases that fail:           0
 Good work!
 
  
-L50 "test_controller.v": $finish at simulation time 225010
+L50 "test_controller.v": $finish at simulation time 235010
 0 simulation events (use +profile or +listcounts option to count)
 CPU time: 0.0 secs to compile + 0.0 secs to link + 0.0 secs in simulation
-End of Tool:	VERILOG-XL	08.20.001-p   Mar 25, 2015  18:30:37
+End of Tool:	VERILOG-XL	08.20.001-p   Mar 25, 2015  21:51:04

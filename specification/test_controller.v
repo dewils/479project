@@ -60,8 +60,8 @@ task test_controller;
 
  
   input [255:0] file;
-  reg[1:12] test_vector_input[5999:0];  // we can have up to 6000 test vectors
-  reg[1:11] line;
+  reg[1:6] test_vector_input[5999:0];  // we can have up to 6000 test vectors
+  reg[1:5] line;
 
   reg expected_load;
   reg expected_add;
@@ -108,18 +108,18 @@ task test_controller;
      @(negedge clk)
        start = line[1];
        sign = line[2];
-       expected_load = line[3];
-       expected_sel = line[4:5];
-       expected_shift = line[6];
-       expected_inbit = line[7];
-       expected_add = line[8];
-       expected_valid = line[9];
-       expected_state = line[10:11];
+       // expected_load = line[3];
+       // expected_sel = line[4:5];
+       // expected_shift = line[6];
+       // expected_inbit = line[7];
+       // expected_add = line[8];
+       expected_valid = line[3];
+       expected_state = line[4:5];
        
        
 
      @(posedge clk)
-     #10;
+    #10;
        $display("**** Clock Cycle: %d ****", cnt);
 
        // See if we have the right value for the state

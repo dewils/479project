@@ -63,7 +63,7 @@ begin
 end
 
 // Next State Logic
-always @(curr_state or start) begin
+always @(curr_state) begin
 	if(start) begin
 		// start is strobed, next state is 0
 		next_state = 2'b00;
