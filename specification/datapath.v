@@ -62,34 +62,38 @@ always @(posedge clk or posedge reset) begin
 	end
 end
 
+// assign adder_result = (add) ? remainder_reg[15:8] + divisor_reg : remainder_reg[15:8] - divisor_reg;
+
 assign adder_result = (add) ? 8'b00000000 + divisor_reg : 8'b00000000 - divisor_reg;
 
 
-// // 16-bit 3-to-1 Mux Module
-// always @(sel) begin
-// 	case (sel)
-// 		2'b01: begin
-// 			// 1 is selected
-// 			mux_value[15:8] <= adder_result;	// mux[15:8] is the output of the adder
-// 			mux_value[7:0] <= remainder_reg[7:0];	// mux[7:0] is Remainder[7:0]
-// 		end
-// 		2'b10: begin
-// 			// 2 is selected
-// 			mux_value[15:8] <= 8'b00000000;	// mux[15:8] is 00000000
-// 			mux_value[7:0] <= dividendin;	// mux[7:0] is value of dividendin input
-// 		end
-// 		2'b11: begin
-// 			// 3 is selected
-// 			mux_value[15:8] <= remainder_reg[15:8];	// mux[15:8] is Remainder[15:8]
-// 			mux_value[7:0] <= remainder_reg[7:0];	// mux[7:0] is Remainder[7:0]
-// 		end
-// 		default: begin
-// 			// default case is 0, controller shouldn't select this value but just in case need to assign a value to mux_value to not infer any latches
-// 			mux_value[15:8] <= 8'bzzzzzzzz;	// mux[15:8] is high impedance
-// 			mux_value[7:0] <= 8'bzzzzzzzz;	// mux[7:0] is high impedance
-// 		end
-// 	endcase
-// end
+// 16-bit 3-to-1 Mux Module
+
+always @(sel or remainder_reg or adder_result or dividendin) begin
+	remainder_reg = 16'b0000000000000000;
+	case (sel)
+		2'b01: begin
+			// 1 is selected
+			mux_value[15:8] <= adder_result;	// mux[15:8] is the output of the adder
+			mux_value[7:0] <= remainder_reg[7:0];	// mux[7:0] is Remainder[7:0]
+		end
+		2'b10: begin
+			// 2 is selected
+			mux_value[15:8] <= 8'b00000000;	// mux[15:8] is 00000000
+			mux_value[7:0] <= dividendin;	// mux[7:0] is value of dividendin input
+		end
+		2'b11: begin
+			// 3 is selected
+			mux_value[15:8] <= remainder_reg[15:8];	// mux[15:8] is Remainder[15:8]
+			mux_value[7:0] <= remainder_reg[7:0];	// mux[7:0] is Remainder[7:0]
+		end
+		default: begin
+			// default case is 0, controller shouldn't select this value but just in case need to assign a value to mux_value to not infer any latches
+			mux_value[15:8] <= 8'bzzzzzzzz;	// mux[15:8] is high impedance
+			mux_value[7:0] <= 8'bzzzzzzzz;	// mux[7:0] is high impedance
+		end
+	endcase
+end
 
 // // Shift/No Shift Module
 // always @(shift) begin
@@ -121,6 +125,6 @@ assign adder_result = (add) ? 8'b00000000 + divisor_reg : 8'b00000000 - divisor_
 // assign quotient = remainder_reg[7:0];		// quotient is Remainder[7:0]
 // assign sign = adder_result[7];			// sign is the 7th bit of the adder
 
-assign quotient = adder_result;
+assign quotient = mux_value[15:8];
 
 endmodule
