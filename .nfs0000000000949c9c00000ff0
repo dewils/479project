@@ -6,11 +6,11 @@ module  test_controller;
 
 wire load;
 wire add;
-wire [2:0] sel;
+wire [1:0] sel;
 wire shift;
 wire inbit;
+wire valid;
 reg start;
-reg valid;
 reg sign;
 reg clk;
 reg reset;
@@ -89,10 +89,10 @@ task test_controller;
     $display("Number of test vectors: %d\n",num);
     numfail = 0;
 
-    reset = 1'b0;
+    reset = 1'b1;
 
     // pull out of reset   
-    #10 reset = 1'b1;
+    #10 reset = 1'b0;
 
     // Step through each test vector 
 
@@ -110,7 +110,7 @@ task test_controller;
        expected_inbit = line[8];
 
      @(posedge clk)
-     #10;
+     // #10;
     
        // See if we have the right value for the load signal
        if (load === expected_load) begin
@@ -149,7 +149,7 @@ task test_controller;
        end
     end
 
-  end
+  
   $display("Number test cases that fail: %d",numfail);
     if (numfail == 0) 
        $display("Good work!\n");
