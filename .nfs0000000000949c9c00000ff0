@@ -4,12 +4,14 @@
 
 module  test_controller;
 
-wire [6:0] remainder;
-wire [7:0] quotient;
-wire valid;
-reg [6:0] divisorin;
-reg [7:0] dividendin;
+wire load;
+wire add;
+wire [2:0] sel;
+wire shift;
+wire inbit;
 reg start;
+reg valid;
+reg sign;
 reg clk;
 reg reset;
 
@@ -17,23 +19,26 @@ reg reset;
 // Instantiate the module
 //////////////////////////////////////////////////////////////////////////
 
-divider u0(
-         .remainder(remainder),
-         .quotient(quotient),
+controller u0(
+         .load(load),
+         .add(add),
+         .shift(shift),
+         .inbit(inbit),
+         .sel(sel),
          .valid(valid),
-         .divisorin(divisorin),
-         .dividendin(dividendin),
          .start(start),
+         .sign(sign),
          .clk(clk),
          .reset(reset));
 
 // Create a clock...
 
-`define    QTR_PERIOD    5000
-always begin
-   #(`QTR_PERIOD) clk = 1;
-   #(`QTR_PERIOD) clk = 0;
-end
+`define    HALF_PERIOD    5000
+always 
+  fork
+      #(`HALF_PERIOD)   clk = 1'b1;
+      #(`HALF_PERIOD*2) clk = 1'b0;
+    join
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -41,7 +46,7 @@ end
 //////////////////////////////////////////////////////////////////////////
 
 initial begin
-   test_divider;
+   test_controller("test_controller.vec");
    $finish;
 end
 
@@ -51,83 +56,104 @@ end
 //////////////////////////////////////////////////////////////////////////
 
 
-task test_divider;
+task test_controller;
 
  
-  reg [6:0] divisorin_copy; 
-  reg [7:0] dividendin_copy;
-  integer cnt, num, numpass, numfail;
+  input [255:0] file;
+  reg[1:9] test_vector_input[5999:0];  // we can have up to 6000 test vectors
+  reg[1:8] line;
+
+  reg expected_load;
+  reg expected_add;
+  reg[1:0] expected_sel;
+  reg expected_shift;
+  reg expected_inbit;
+
+  reg actual_load;
+  reg actual_add;
+  reg[1:0] actual_sel;
+  reg actual_shift;
+  reg actual_inbit;
+  integer cnt, num, numfail;
   
   begin
 
-    // A clock cycle just to get things going
+    // Read in the input file into an array
 
-    @(negedge clk);
+    $readmemb(file, test_vector_input);
 
-    numpass = 0;
+    // The first line of the file should specify the 
+    // number of entries in the file
+       
+    num = test_vector_input[0];
+    $display("Number of test vectors: %d\n",num);
     numfail = 0;
-    reset = 0;
 
-    // Do 40 test cases (you might want to test with many more
-    // than this, just to be sure your design is ok).  Note that
-    // your design does not have to handle the divide-by-zero case,
-    // so we will make sure we don't test that case.
+    reset = 1'b0;
 
-    for(num=0;num<40;num=num+1) begin       
+    // pull out of reset   
+    #10 reset = 1'b1;
 
-       // Assert Start for one cycle
+    // Step through each test vector 
 
-       start = 1;
+    for(cnt=0; cnt<num; cnt=cnt+1) begin
+       line = test_vector_input[1+cnt];
 
-       @(negedge clk);
+       // Set the inputs. 
+     @(negedge clk)
+       start = line[1];
+       sign = line[2];
+       expected_load = line[3];
+       expected_add = line[4];
+       expected_sel = line[5:6];
+       expected_shift = line[7];
+       expected_inbit = line[8];
 
-       // Negate start and set inputs
-
-       start = 0;
-
-       // Choose dividend and divisor randomly 
-
-       dividendin_copy = $random;
-       divisorin_copy = $random;
-
-       // If divisor is a 0, choose another number, since we don't
-       // need to test for the divide-by-zero case
-
-       while(divisorin_copy == 0) divisorin_copy = $random;
-
-       dividendin = dividendin_copy;
-       divisorin = divisorin_copy;
-
-       // Now wait 17 cycles
- 
-       for(cnt=0; cnt<17; cnt=cnt+1) begin
-          @(negedge clk);
-       end
-
-       // Print Results for this test case
-
-       if (quotient * divisorin_copy + remainder == dividendin_copy) 
-       begin
-          $display("Pass: %d/%d = %d rem %d",
-                                  dividendin_copy,
-                                  divisorin_copy,
-                                  quotient, remainder);
-          numpass = numpass +1;
+     @(posedge clk)
+     #10;
+    
+       // See if we have the right value for the load signal
+       if (load === expected_load) begin
+          $display("Pass: load is correct:  load=%b", load);
        end else begin
-          $display("Fail: %d/%d is not %d rem %d",
-                                  dividendin_copy,
-                                  divisorin_copy,
-                                  quotient, remainder); 
-          numfail = numfail +1;
+          $display("Fail: load is wrong.  load=%b but expected %b", load, expected_load);
+          numfail = numfail + 1;
+       end
+       // See if we have the right value for the add signal
+       if (add === expected_add) begin
+          $display("Pass: add is correct:  add=%b", add);
+       end else begin
+          $display("Fail: add is wrong.  add=%b but expected %b", add, expected_add);
+          numfail = numfail + 1;
+       end
+       // See if we have the right value for the sel signal
+       if (sel === expected_sel) begin
+          $display("Pass: sel is correct:  sel=%b", sel);
+       end else begin
+          $display("Fail: sel is wrong.  sel=%b but expected %b", sel, expected_sel);
+          numfail = numfail + 1;
+       end
+       // See if we have the right value for the shift signal
+       if (shift === expected_shift) begin
+          $display("Pass: shift is correct:  shift=%b", shift);
+       end else begin
+          $display("Fail: shift is wrong.  shift=%b but expected %b", shift, expected_shift);
+          numfail = numfail + 1;
+       end
+       // See if we have the right value for the inbit signal
+       if (inbit === expected_inbit) begin
+          $display("Pass: inbit is correct:  inbit=%b", inbit);
+       end else begin
+          $display("Fail: inbit is wrong.  inbit=%b but expected %b", inbit, expected_inbit);
+          numfail = numfail + 1;
        end
     end
 
-    $display("Number test cases passed: %d",numpass);
-    $display("Number test cases failed: %d",numfail);
-  
-    if (numfail == 0)
-       $display("Good work!");
-
+  end
+  $display("Number test cases that fail: %d",numfail);
+    if (numfail == 0) 
+       $display("Good work!\n");
+    $display(" ");
  end
 endtask
 endmodule
