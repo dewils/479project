@@ -50,7 +50,7 @@ always
 //////////////////////////////////////////////////////////////////////////
 
 initial begin
-   test_datapath("test_datapath2.vec");
+   test_datapath("test_datapath.vec");
    $finish;
 end
 
@@ -64,8 +64,8 @@ task test_datapath;
 
  
   input [255:0] file;
-  reg[1:29] test_vector_input[5999:0];  // we can have up to 6000 test vectors
-  reg[1:28] line;
+  reg[1:38] test_vector_input[5999:0];  // we can have up to 6000 test vectors
+  reg[1:37] line;
 
   reg [6:0] expected_remainder;
   reg [7:0] expected_quotient;
@@ -80,70 +80,63 @@ task test_datapath;
   begin
 
     // Read in the input file into an array
-
     $readmemb(file, test_vector_input);
 
     // The first line of the file should specify the 
     // number of entries in the file
-       
     num = test_vector_input[0];
     $display("Number of test vectors: %d\n",num);
+
+    // A clock cycle just to get things going
+    @(negedge clk);
     numfail = 0;
+    reset = 1;
 
-    reset = 1'b1;
-
-    // pull out of reset   
-    // #10 reset = 0'b0;
+    // Negate reset
+    @(negedge clk)
+    reset = 0;
 
     // Step through each test vector 
-
     for(cnt=0; cnt<num; cnt=cnt+1) begin
-       line = test_vector_input[1+cnt];
-
-       // Set the inputs. 
-     @(negedge clk)
-       reset = line[1];
-       load = line[2];
-       divisorin = line[3:9];
-       add = line[10];
-       sel = line[11:12];
-       dividendin = line[13:20];
-       // shift = line[19];
-       // inbit = line[20];
-       // expected_remainder = line[32:38];
-       expected_quotient = line[21:28];
-       // expected_sign = line[47];
+        line = test_vector_input[1+cnt];
+        
+        @(negedge clk);
+        // Set inputs
+          load = line[1];
+          divisorin = line[2:8];
+          add = line[9];
+          sel = line[10:11];
+          dividendin = line[12:19];
+          shift = line[20];
+          inbit = line[21];
+          expected_remainder = line[22:28];
+          expected_quotient = line[29:36];
+          expected_sign = line[37];
 
      @(posedge clk)
-    #10;
+     #10
        $display("**** Clock Cycle: %d ****", cnt);
-        if (quotient === expected_quotient) begin
-          $display("Pass: Mux Output value is Correct is correct:  Mux Output=%b", quotient);
-        end else begin
-          $display("Fail: Mux Output value is wrong.  Mux Output=%b but expected %b", quotient, expected_quotient);
+       // See if we have the right value for the remainder signal
+       if (remainder === expected_remainder) begin
+          $display("Pass: remainder is correct:  remainder=%b", remainder);
+       end else begin
+          $display("Fail: remainder is wrong.  remainder=%b but expected %b", remainder, expected_remainder);
           numfail = numfail + 1;
-        end 
-       // // See if we have the right value for the remainder signal
-       // if (remainder === expected_remainder) begin
-       //    $display("Pass: remainder is correct:  remainder=%b", remainder);
-       // end else begin
-       //    $display("Fail: remainder is wrong.  remainder=%b but expected %b", remainder, expected_remainder);
-       //    numfail = numfail + 1;
-       // end 
-       // // See if we have the right value for the quotient signal
-       // if (quotient === expected_quotient) begin
-       //    $display("Pass: quotient is correct:  quotient=%b", quotient);
-       // end else begin
-       //    $display("Fail: quotient is wrong.  quotient=%b but expected %b", quotient, expected_quotient);
-       //    numfail = numfail + 1;
-       // end
-       // // See if we have the right value for the sign signal
-       // if (sign === expected_sign) begin
-       //    $display("Pass: sign is correct:  sign=%b", sign);
-       // end else begin
-       //    $display("Fail: sign is wrong.  sign=%b but expected %b", sign, expected_sign);
-       //    numfail = numfail + 1;
-       // end
+       end 
+       // See if we have the right value for the quotient signal
+       if (quotient === expected_quotient) begin
+          $display("Pass: quotient is correct:  quotient=%b", quotient);
+       end else begin
+          $display("Fail: quotient is wrong.  quotient=%b but expected %b", quotient, expected_quotient);
+          numfail = numfail + 1;
+       end
+       // See if we have the right value for the sign signal
+       if (sign === expected_sign) begin
+          $display("Pass: sign is correct:  sign=%b", sign);
+       end else begin
+          $display("Fail: sign is wrong.  sign=%b but expected %b", sign, expected_sign);
+          numfail = numfail + 1;
+       end
     end
   
   $display("Number test cases that fail: %d",numfail);

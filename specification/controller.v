@@ -63,7 +63,7 @@ begin
 end
 
 // Next State Logic
-always @(curr_state) begin
+always @(curr_state or start) begin
 	if(start) begin
 		// start is strobed, next state is 0
 		next_state = 2'b00;
@@ -89,7 +89,7 @@ always @(curr_state) begin
 				// current state is 3, next state is 1
 				next_state = 2'b01;
 			end
-			default: begin 
+			2'b00: begin 
 				// current state 0, next state is 1
 				next_state = 2'b01;
 			end	
@@ -136,7 +136,7 @@ always @(curr_state) begin
 				valid <= 1'b0;	// result is not valid
 			end
 		end	
-		default: begin
+		3'b11: begin
 			// current state is 3
 			load <= 1'b0;	// keep initial value in Divisor register
 			add <= 1'bz;	// don't care

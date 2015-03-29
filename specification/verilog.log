@@ -1,10 +1,10 @@
 Host command: /CMC/tools/cadence/IUS08.20.024_lnx86/tools/verilog/bin/verilog.exe
 Command arguments:
-    datapath.v
-    test_datapath.v
+    divisor_register.v
+    test_divisor_register.v
 
-Tool:	VERILOG-XL	08.20.001-p log file created Mar 26, 2015  00:45:04
-Tool:	VERILOG-XL	08.20.001-p   Mar 26, 2015  00:45:04
+Tool:	VERILOG-XL	08.20.001-p log file created Mar 28, 2015  17:14:29
+Tool:	VERILOG-XL	08.20.001-p   Mar 28, 2015  17:14:29
 
 Copyright (c) 1995-2004 Cadence Design Systems, Inc.  All Rights Reserved.
 Unpublished -- rights reserved under the copyright laws of the United States.
@@ -33,28 +33,34 @@ For technical assistance please contact the Cadence Response Center at
 For more information on Cadence's Verilog-XL product line send email to
 talkv@cadence.com
 
-Compiling source file "datapath.v"
-Compiling source file "test_datapath.v"
+Compiling source file "divisor_register.v"
+Compiling source file "test_divisor_register.v"
 Highest level modules:
-test_datapath
+test_divisor_reg
 
-Number of test vectors:           5
+Number of test vectors:           8
 
 **** Clock Cycle:           0 ****
-Pass: Mux Output value is Correct is correct:  Mux Output=00000000
+Pass: reg_output is correct:  reg_output=00000000
 **** Clock Cycle:           1 ****
-Pass: Mux Output value is Correct is correct:  Mux Output=00000010
+Pass: reg_output is correct:  reg_output=00000000
 **** Clock Cycle:           2 ****
-Pass: Mux Output value is Correct is correct:  Mux Output=00000010
+Pass: reg_output is correct:  reg_output=00000000
 **** Clock Cycle:           3 ****
-Pass: Mux Output value is Correct is correct:  Mux Output=11111110
+Pass: reg_output is correct:  reg_output=11111111
 **** Clock Cycle:           4 ****
-Pass: Mux Output value is Correct is correct:  Mux Output=00000000
+Pass: reg_output is correct:  reg_output=11111111
+**** Clock Cycle:           5 ****
+Pass: reg_output is correct:  reg_output=00000000
+**** Clock Cycle:           6 ****
+Pass: reg_output is correct:  reg_output=00000000
+**** Clock Cycle:           7 ****
+Pass: reg_output is correct:  reg_output=00000001
 Number test cases that fail:           0
 Good work!
 
  
-L54 "test_datapath.v": $finish at simulation time 55010
+L40 "test_divisor_register.v": $finish at simulation time 105010
 0 simulation events (use +profile or +listcounts option to count)
 CPU time: 0.0 secs to compile + 0.0 secs to link + 0.0 secs in simulation
-End of Tool:	VERILOG-XL	08.20.001-p   Mar 26, 2015  00:45:04
+End of Tool:	VERILOG-XL	08.20.001-p   Mar 28, 2015  17:14:29

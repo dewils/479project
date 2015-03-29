@@ -80,7 +80,7 @@ task test_divider;
     // your design does not have to handle the divide-by-zero case,
     // so we will make sure we don't test that case.
 
-    for(num=0;num<40;num=num+1) begin       
+    for(num=0;num<10;num=num+1) begin       
 
        // Assert Start for one cycle
 
@@ -101,6 +101,9 @@ task test_divider;
        // need to test for the divide-by-zero case
 
        while(divisorin_copy == 0) divisorin_copy = $random;
+       $display("Dividen: %d, %b", dividendin_copy, dividendin_copy);
+       $display("Divisor: %d, %b", divisorin_copy, divisorin_copy);
+       $display("Quotient: %d, %b", dividendin_copy/divisorin_copy, dividendin_copy/divisorin_copy);
 
        dividendin = dividendin_copy;
        divisorin = divisorin_copy;
@@ -109,6 +112,7 @@ task test_divider;
  
        for(cnt=0; cnt<17; cnt=cnt+1) begin
           @(negedge clk);
+          $display("Remainder: %b, Quotient: %b, Valid: %b", remainder, quotient, valid);
        end
 
        // Print Results for this test case
